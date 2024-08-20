@@ -358,7 +358,8 @@ impl Image {
             // TODO: this is bad we should not fail at this point
             PhotometricInterpretation::RGBPalette
             | PhotometricInterpretation::TransparencyMask
-            | PhotometricInterpretation::CIELab => Err(TiffError::UnsupportedError(
+            | PhotometricInterpretation::CIELab
+            | PhotometricInterpretation::CFA => Err(TiffError::UnsupportedError(
                 TiffUnsupportedError::InterpretationWithBits(
                     self.photometric_interpretation,
                     vec![self.bits_per_sample; self.samples as usize],
